@@ -4,6 +4,15 @@
 var todos = [];
 
 /**
+*	ステータスの列挙型
+*/
+var Status = {
+	all : 'all',
+	working : 0,
+	complete : 1,
+};
+
+/**
 *	画面初期表示時の処理
 */
 window.onload = function(){
@@ -96,16 +105,16 @@ function showTodos(state){
 	let todoList = document.getElementById('todos');
 	todoList.textContent = null;
 
-	for (var i = 0; i < todos.length; i++){
-		// all : all
-		// 0 : working
-		// 1 : complete 
-		if (state === 'all') {
-			todoList.appendChild(createTodoElements(todos[i]));
-		}
-		if (todos[i].state === parseInt(state)) {
-			todoList.appendChild(createTodoElements(todos[i]));
-		}
+	// すべて表示
+	if (state === Status.all) {
+		todos.map(el => todoList.appendChild(createTodoElements(el)));
+	}
+
+	// 作業中または完了の場合はステータスでフィルタして表示
+	let parsedState = parseInt(state);
+	if (parsedState === Status.working || parsedState === Status.complete) {
+		todos.filter(el => el.state === parsedState)
+			 .map(el2 => todoList.appendChild(createTodoElements(el2)));
 	}
 }
 
