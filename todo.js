@@ -80,7 +80,7 @@ function changeStateButtonClick(obj){
 *	ステータス変更処理
 */
 function changeTask(obj){
-	todos.map(function(value, index, array){
+	todos.map(function(value, index){
 		if (value.id === parseInt(obj.dataset.todoid) && value.state === 0) {
 			value.state = 1;
 		}
