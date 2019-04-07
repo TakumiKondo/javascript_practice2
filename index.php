@@ -8,15 +8,15 @@
 </head>
 <body>
 	<h1>ToDoリスト</h1>
-	<form name="selectStatus">
+	<form id="status" name="selectStatus">
 		<label>
-			<input type="radio" id="all" name="todo" value="all" onclick="showTodos(this.value);" checked>すべて
+			<input type="radio" id="all" name="todo" value="all" checked>すべて
 		</label>
 		<label>
-			<input type="radio" id="working" name="todo" value="0" onclick="showTodos(this.value);">作業中
+			<input type="radio" id="working" name="todo" value="0">作業中
 		</label>
 		<label>
-			<input type="radio" id="complete" name="todo" value="1" onclick="showTodos(this.value);">完了
+			<input type="radio" id="complete" name="todo" value="1">完了
 		</label>
 	</form>
 
@@ -35,6 +35,9 @@
 	<input id="add_task_name" type="text" name="new_task" value="">
 	<button id="addTaskButton" onclick="addTaskButtonClick();">追加</button>
 	<script type="text/javascript" src="<?php echo 'todo.js?date='.date('YmdHis'); ?>"></script>
+	<script type="text/javascript">
+
+	</script>
 </body>
 </html>
 

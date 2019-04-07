@@ -8,6 +8,10 @@ var todos = [];
 */
 window.onload = function(){
 	init();
+
+	// イベント登録（ステータス変更によるToDoリスト表示切替）
+	const status = document.getElementById('status');
+	status.addEventListener('click', showByStatus, false);
 }
 
 /**
