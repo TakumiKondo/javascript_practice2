@@ -142,10 +142,7 @@ function setTaskId(){
 	if (todos.length === 0) { return 1 };
 
 	// 追加する場合、IDの最大値に+1した値を設定
-	var ids = [];
-	for (var i = 0; i < todos.length; i++) {
-		ids.push(todos[i].id);
-	}
+	let ids = todos.map(el => el.id);
 	return Math.max.apply({}, ids) + 1;
 }
 
