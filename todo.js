@@ -26,7 +26,7 @@ function init(){
 */
 function showByStatus(){
 	var status = document.selectStatus.todo;
-	for(var i=0; i<status.length; i++) {
+	for(var i = 0; i < status.length; i++) {
 		if (status[i].checked) {
 			showTodos(status[i].value);
 		}
@@ -94,7 +94,7 @@ function changeTask(obj){
 */
 function showTodos(state){
 	var todoList = '';
-	for (var i=0; i<todos.length;i++){
+	for (var i = 0; i < todos.length; i++){
 		// all : all
 		// 0 : working
 		// 1 : complete 
@@ -143,7 +143,7 @@ function setTaskId(){
 
 	// 追加する場合、IDの最大値に+1した値を設定
 	var ids = new Array();
-	for (var i=0; i<todos.length; i++) {
+	for (var i = 0; i < todos.length; i++) {
 		ids.push(todos[i].id);
 	}
 	return Math.max.apply({}, ids) + 1;
