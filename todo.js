@@ -37,10 +37,10 @@ function showByStatus(){
 *	タスク追加ボタン押下イベント
 */
 function addTaskButtonClick(){
-	var add_task_name = document.getElementById('add_task_name');
-	if (add_task_name.value !== "") {
+	var addTaskName = document.getElementById('add_task_name');
+	if (addTaskName.value !== "") {
 		addTask();
-		valueClear(add_task_name);
+		valueClear(addTaskName);
 	}
 	showByStatus();
 }
@@ -49,8 +49,8 @@ function addTaskButtonClick(){
 *	タスク追加処理
 */
 function addTask(){
-	var add_task_name = document.getElementById('add_task_name').value;
-	todos.push( {id:setTaskId(), name:add_task_name, state:0} );
+	var addTaskName = document.getElementById('add_task_name').value;
+	todos.push( {id:setTaskId(), name:addTaskName, state:0} );
 }
 
 /**
