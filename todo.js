@@ -38,7 +38,7 @@ function showByStatus(){
 */
 function addTaskButtonClick(){
 	var addTaskName = document.getElementById('add_task_name');
-	if (addTaskName.value !== "") {
+	if (addTaskName.value !== '') {
 		addTask();
 		valueClear(addTaskName);
 	}
@@ -154,5 +154,5 @@ function setTaskId(){
 *	@param targetElement
 */
 function valueClear(targetElement){
-	targetElement.value = "";
+	targetElement.value = '';
 }

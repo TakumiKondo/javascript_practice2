@@ -34,7 +34,7 @@
 	<h2>新規タスクの追加</h2>
 	<input id="add_task_name" type="text" name="new_task" value="">
 	<button id="addTaskButton" onclick="addTaskButtonClick();">追加</button>
-	<script type="text/javascript" src="<?php echo 'todo.js?date='.date('YmdHis'); ?>"></script>
+	<script type="text/javascript" src="<?php echo "todo.js?date=".date("YmdHis"); ?>"></script>
 	<script type="text/javascript">
 
 	</script>
