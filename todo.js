@@ -93,44 +93,65 @@ function changeTask(obj){
 *	@param state String
 */
 function showTodos(state){
-	var todoList = '';
+	let todoList = document.getElementById('todos');
+	todoList.textContent = null;
+
 	for (var i = 0; i < todos.length; i++){
 		// all : all
 		// 0 : working
 		// 1 : complete 
 		if (state === 'all') {
-			todoList += createTodoElements(todos[i]);
+			todoList.appendChild(createTodoElements(todos[i]));
 		}
 		if (todos[i].state === parseInt(state)) {
-			todoList += createTodoElements(todos[i]);
+			todoList.appendChild(createTodoElements(todos[i]));
 		}
 	}
-	document.getElementById('todos').innerHTML = todoList;
 }
 
 /**
 *	表示するエレメントの生成
 */
 function createTodoElements(todo){
-	var todos = '';
 
-	// Element作成
-	todos += '<tr>';
-	todos += '<td>' + todo.id + '</td>';
-	todos += '<td>' + todo.name + '</td>';
+	// TodoリストのTRタグ
+	let tr = document.createElement('tr');
+
+	// ToDo ID
+	let td = document.createElement('td');
+	td.appendChild(document.createTextNode(todo.id));
+	tr.appendChild(td);
+
+	// ToDo 名称
+	td = document.createElement('td');
+	td.appendChild(document.createTextNode(todo.name));
+	tr.appendChild(td);
+
+	// ステータスボタン
 	var stateName = '';
 	if (todo.state === 0) {
 		stateName = '作業中';
 	}else if (todo.state === 1) {
 		stateName = '完了';
 	}
-	todos += '<td><button data-todoid=' + todo.id + 
-				' onclick="changeStateButtonClick(this);">' + stateName + '</button></td>';
-	todos += '<td><button data-todoid=' + todo.id +
-				' onclick="deleteTaskButtonClick(this);">削除</button></td>';
-	todos += '</tr>';
+	td = document.createElement('td');
+	let button = document.createElement('button');
+	button.setAttribute('data-todoid', todo.id);
+	button.setAttribute('onclick', 'changeStateButtonClick(this);');
+	button.appendChild(document.createTextNode(stateName));
+	td.appendChild(button);
+	tr.appendChild(td);
 
-	return todos;
+	// 削除ボタン
+	td = document.createElement('td');
+	button = document.createElement('button');
+	button.setAttribute('data-todoid', todo.id);
+	button.setAttribute('onclick', 'deleteTaskButtonClick(this);');
+	button.appendChild(document.createTextNode('削除'));
+	td.appendChild(button);
+	tr.appendChild(td);
+
+	return tr;
 }
 
 /**
