@@ -21,6 +21,11 @@ window.onload = function(){
 	// イベント登録（ステータス変更によるToDoリスト表示切替）
 	const status = document.getElementById('status');
 	status.addEventListener('click', showByStatus, false);
+
+	// イベント登録（追加ボタン）
+	const addTaskButton = document.getElementById('addTaskButton');
+	addTaskButton.addEventListener('click', addTaskButtonClick, false);
+
 }
 
 /**
@@ -46,7 +51,7 @@ function showByStatus(){
 *	タスク追加ボタン押下イベント
 */
 function addTaskButtonClick(){
-	var addTaskName = document.getElementById('add_task_name');
+	var addTaskName = document.getElementById('addTaskName');
 	if (addTaskName.value !== '') {
 		addTask();
 		valueClear(addTaskName);
@@ -58,7 +63,7 @@ function addTaskButtonClick(){
 *	タスク追加処理
 */
 function addTask(){
-	var addTaskName = document.getElementById('add_task_name').value;
+	var addTaskName = document.getElementById('addTaskName').value;
 	todos.push( {id:setTaskId(), name:addTaskName, state:0} );
 }
 
