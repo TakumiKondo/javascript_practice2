@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>todo list js</title>
 </head>
 <body>
@@ -33,12 +33,8 @@
 
 	<h2>新規タスクの追加</h2>
 	<input id="addTaskName" type="text" name="new_task" value="">
-	<!-- <button id="addTaskButton" onclick="addTaskButtonClick();">追加</button> -->
 	<button id="addTaskButton">追加</button>
 	<script type="text/javascript" src="<?php echo "todo.js?date=".date("YmdHis"); ?>"></script>
-	<script type="text/javascript">
-
-	</script>
 </body>
 </html>
 
