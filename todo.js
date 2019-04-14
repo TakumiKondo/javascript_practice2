@@ -1,15 +1,15 @@
 /**
 *	ToDo（グルーバル変数）
 */
-var todos = [];
+let todos = [];
 
 /**
 *	ステータスの列挙型
 */
-var Status = {
-	all : 'all',
-	working : 0,
-	complete : 1,
+const STATUS = {
+	ALL : 'all',
+	WORKING : 'working',
+	COMPLETE : 'complete',
 };
 
 /**
@@ -19,12 +19,12 @@ window.onload = function(){
 	init();
 
 	// イベント登録（ステータス変更によるToDoリスト表示切替）
-	const status = document.getElementById('status');
-	status.addEventListener('click', showByStatus, false);
+	const status = 
+		document.getElementById('status').addEventListener('click', showByStatus, false);
 
 	// イベント登録（追加ボタン）
-	const addTaskButton = document.getElementById('addTaskButton');
-	addTaskButton.addEventListener('click', addTaskButtonClick, false);
+	const addTaskButton = 
+		document.getElementById('addTaskButton').addEventListener('click', addTaskButtonClick, false);
 
 }
 
@@ -39,10 +39,10 @@ function init(){
 *	表示ステータスによる表示処理
 */
 function showByStatus(){
-	var status = document.selectStatus.todo;
-	for(var i = 0; i < status.length; i++) {
-		if (status[i].checked) {
-			showTodos(status[i].value);
+	const checkedStatus = document.checkedStatus.todo;
+	for(let i = 0; i < checkedStatus.length; i++) {
+		if (checkedStatus[i].checked) {
+			showTodos(checkedStatus[i]);
 		}
 	}
 }
@@ -51,7 +51,7 @@ function showByStatus(){
 *	タスク追加ボタン押下イベント
 */
 function addTaskButtonClick(){
-	var addTaskName = document.getElementById('addTaskName');
+	const addTaskName = document.getElementById('addTaskName');
 	if (addTaskName.value !== '') {
 		addTask();
 		valueClear(addTaskName);
@@ -63,8 +63,8 @@ function addTaskButtonClick(){
 *	タスク追加処理
 */
 function addTask(){
-	var addTaskName = document.getElementById('addTaskName').value;
-	todos.push( {id:setTaskId(), name:addTaskName, state:0} );
+	const addTaskName = document.getElementById('addTaskName').value;
+	todos.push( {id:setTaskId(), name:addTaskName, state:STATUS.WORKING} );
 }
 
 /**
@@ -95,8 +95,8 @@ function changeStateButtonClick(obj){
 */
 function changeTask(obj){
 	todos.map(function(value, index){
-		if (value.id === parseInt(obj.dataset.todoid) && value.state === 0) {
-			value.state = 1;
+		if (value.id === parseInt(obj.dataset.todoid) && value.state === STATUS.WORKING) {
+			value.state = STATUS.COMPLETE;
 		}
 		return value;
 	});
@@ -106,19 +106,18 @@ function changeTask(obj){
 *	タスクの表示処理
 *	@param state String
 */
-function showTodos(state){
+function showTodos(checkedStatus){
 	let todoList = document.getElementById('todos');
 	todoList.textContent = null;
 
 	// すべて表示
-	if (state === Status.all) {
+	if (checkedStatus.value === STATUS.ALL) {
 		todos.map(el => todoList.appendChild(createTodoElements(el)));
 	}
 
 	// 作業中または完了の場合はステータスでフィルタして表示
-	let parsedState = parseInt(state);
-	if (parsedState === Status.working || parsedState === Status.complete) {
-		todos.filter(el => el.state === parsedState)
+	if (checkedStatus.value === STATUS.WORKING || checkedStatus.value === STATUS.COMPLETE) {
+		todos.filter(el => el.state === checkedStatus.value)
 			 .map(el2 => todoList.appendChild(createTodoElements(el2)));
 	}
 }
@@ -142,10 +141,10 @@ function createTodoElements(todo){
 	tr.appendChild(td);
 
 	// ステータスボタン
-	var stateName = '';
-	if (todo.state === 0) {
+	let stateName = '';
+	if (todo.state === STATUS.WORKING) {
 		stateName = '作業中';
-	}else if (todo.state === 1) {
+	}else if (todo.state === STATUS.COMPLETE) {
 		stateName = '完了';
 	}
 	td = document.createElement('td');
